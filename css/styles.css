@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.radiobuttons, .checkboxes {
+    display: none;
+}
+
+.radiolabels, .checklabels {
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, .5);
+    color: #efca0c;
+    padding: 5px 15px 5px 40px;
+    height: 30px;
+    line-height: 20px;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 5px;
+    width: auto;
+    position: relative;
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+}
+
+.radiolabels:hover, .checklabels:hover {
+    background-color: #efca0c;
+    color: rgba(0, 0, 0, 1);
+}
+
+.radiolabels::before,
+.checklabels::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: absolute;
+    left: 6px;
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+}
+
+.radiolabels::before {
+    background-image: url('../images/css/radio_unchecked.png');
+}
+
+.checklabels::before {
+    background-image: url('../images/css/checkbox_unchecked.png');
+}
+
+.radiobuttons:checked + label::before {
+    content: '';
+    background-image: url('../images/css/radio_checked.png');
+}
+
+.checkboxes:checked + label::before {
+    content: '';
+    background-image: url('../images/css/checkbox_checked.png');
+}
+
+
+

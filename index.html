@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Radio-Check CSS</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h4>Botones de radio</h4>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <input type="radio" name="edad" value="less18" id="less18" class="radiobuttons">
+                <label for="less18" class="radiolabels">Menor de 18</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="radio" name="edad" value="from18to30" id="from18to30" class="radiobuttons">
+                <label for="from18to30" class="radiolabels">De 18 a 30</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="radio" name="edad" value="from31to50" id="from31to50" class="radiobuttons">
+                <label for="from31to50" class="radiolabels">De 31 a 50</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="radio" name="edad" value="greater50" id="greater50" class="radiobuttons">
+                <label for="greater50" class="radiolabels">Más de 50</label>
+            </div>
+        </div><!-- Final de fila de botones de radio -->
+
+
+        <div class="row">
+            <h4>Checkboxes</h4>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <input type="checkbox" name="menor" value="menor" id="menor" class="checkboxes">
+                <label for="menor" class="checklabels">Menor de edad</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" name="zoo" value="zoo" id="zoologia" class="checkboxes">
+                <label for="zoologia" class="checklabels">Zoología</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" name="astro" value="astro" id="astronomia" class="checkboxes">
+                <label for="astronomia" class="checklabels">Astronomía</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" name="historia" value="historia" id="historia" class="checkboxes">
+                <label for="historia" class="checklabels">Historia</label>
+            </div>
+        </div><!-- Final de fila de checkboxes -->
+
+        <!-- Fila de mensaje relativo a la edad -->
+        <div class="row"><br></div>
+        <div class="row" id="zonaDeMensajeDeEdad">
+            La edad no está determinada.
+        </div>
+        <!-- Fin de fila de mensaje relativo a la edad -->
+       
+        <!-- Fila de mensaje relativo a las aficiones -->
+        <div class="row"><br></div>
+        <div class="row" id="zonaDeMensajeDeAficiones">
+            Las aficciones no están determinadas
+        </div>
+        <!-- Fin de fila de mensaje relativo a las aficiones -->
+       
+    </div><!-- Final de container -->
+    
+    <script language="javascript">
+        $('.radiobuttons').on('click', function() {
+            let pulsado = $(this).attr('value');
+            $('#menor').prop('checked', (pulsado == "less18"));
+            let mensajeDeEdad;
+            switch (pulsado) {
+                case "less18":
+                    mensajeDeEdad = "La edad es menor de 18.";
+                    break;
+                case "from18to30":
+                    mensajeDeEdad = "La edad está entre 18 y 30.";
+                    break;
+                case "from31to50":
+                    mensajeDeEdad = "La edad está entre 31 y 50.";
+                    break;
+                case "greater50":
+                    mensajeDeEdad = "La edad es mayor de 50.";
+                    break;
+            }
+            $("#zonaDeMensajeDeEdad").html(mensajeDeEdad);
+        });
+
+        $('#menor').on('click', function(e) {
+            e.preventDefault();
+        });
+
+        $('.checkboxes').on('click', function() {
+            if ($(this).prop('id') == 'menor') return false;
+            let aficiones = "";
+            if ($('#zoologia').prop('checked')) aficiones += "<li>Zoología</li>";
+            if ($('#astronomia').prop('checked')) aficiones += "<li>Astronomía</li>";
+            if ($('#historia').prop('checked')) aficiones += "<li>Historia</li>";
+            if (aficiones == "") {
+                aficiones = "El usuario no tiene aficciones de la lista.";
+            } else {
+                aficiones = "Las aficiones son:<ul>" + aficiones + "</ul>";
+            }
+            $('#zonaDeMensajeDeAficiones').html(aficiones);
+        });
+        
+    </script>
+</body>
+</html>
